@@ -12,6 +12,10 @@ public class Edge {
 		v2.addEdge(this);
 	}
 	
+	public Vertex getEndNode() {
+		return this.end;
+	}
+	
 	public double getWeight() {
 		return this.weight;
 	}
