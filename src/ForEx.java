@@ -1,4 +1,3 @@
-
 public class ForEx {
 
 	private static String[] tempForExData = {
@@ -19,6 +18,27 @@ public class ForEx {
 	     "GBP JPY 159.64",
 	     "JPY GBP 0.0062"
 	};
+	
+	private static String[] testData = {
+			"A B 7",
+			"B C 10",
+			"C D 11",
+			"D E 6",
+			"E F 9",
+			"A C 9",
+			"A F 14",
+			"C F 2",
+			"B D 15"
+	};
+	
+	private static String[] testVertices = {
+		"A",
+		"B",
+		"C",
+		"D",
+		"E",
+		"F"
+	};
 	private static String[] vertexNames = {
 		"USD",
 		"EUR",
@@ -27,19 +47,23 @@ public class ForEx {
 		"JPY"
 	};
 	
+	private final static boolean VERBOSE = true;
+	
 	public static void main( String[] args ) {
 		
 		Graph graph = new Graph();
 		
-		/* POPULATE GRAPH */
+		long initTime = System.currentTimeMillis();
 		
+		
+		/* POPULATE GRAPH */
 		// Populate vertices
-		for (String name : vertexNames) {
+		for (String name : /*vertexNames*/ testVertices ) {
 			graph.addVertex(name, new Vertex(name));
 		}
 		
 		// Add all edges
-		for (String exchangeRate: tempForExData ) {
+		for (String exchangeRate: /*tempForExData*/ testData ) {
 			// Parse the string 
 			String[] split = exchangeRate.split("\\s+");
 			Vertex v1 = graph.getVertex(split[0]);
@@ -47,13 +71,22 @@ public class ForEx {
 			double weight = Double.parseDouble(split[2]);
 			
 			// Add the edge
-			Edge newEdge = new Edge(v1, v2, weight);
+			new Edge(v1, v2, weight);
 		}
 		
-		// Print out the Graph Vertices and their Edges
-		for ( Object vertex : graph.getVertices()) {
-			System.out.println(vertex);
+		if(VERBOSE) {
+			// Print out the Graph Vertices and their Edges
+			for ( Object vertex : graph.getVertices()) {
+				System.out.println(vertex);
+			}			
+
+			/* TIMER INFO */
+			long endTime = System.currentTimeMillis();
+			long totalTime = endTime - initTime;
+			
+			System.out.println("Time: " + totalTime + "ms\n");			
 		}
+
 	}
 
 }
