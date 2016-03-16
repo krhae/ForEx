@@ -24,7 +24,7 @@ public class ForEx {
 			"B C 10",
 			"C D 11",
 			"D E 6",
-			"E F 9",
+			"F E 9",
 			"A C 9",
 			"A F 14",
 			"C F 2",
@@ -73,6 +73,9 @@ public class ForEx {
 			// Add the edge
 			new Edge(v1, v2, weight);
 		}
+		
+		
+		ShortestPath.dijkstra(graph, graph.getVertex("A"), graph.getVertex("E"));
 		
 		if(VERBOSE) {
 			// Print out the Graph Vertices and their Edges
