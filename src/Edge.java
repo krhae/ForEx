@@ -9,7 +9,6 @@ public class Edge {
 		this.start = v1;
 		v1.addEdge(this);
 		this.end = v2;
-		v2.addEdge(this);
 	}
 	
 	public Vertex getEndNode() {
